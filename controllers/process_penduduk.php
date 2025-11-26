@@ -1,80 +1,50 @@
 <?php
-require_once __DIR__ . '/../config/db_config.php';
 require_once __DIR__ . '/../models/PendudukModel.php';
 
-$pendudukModel = new PendudukModel($conn);
-$action = isset($_GET['action']) ? $_GET['action'] : '';
-$nik = isset($_POST['nik']) ? $_POST['nik'] : '';
-
-switch ($action) {
-    case 'add':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'nik' => $_POST['nik'],
-                'nama' => $_POST['nama'],
-                'jenis_kelamin' => $_POST['jenis_kelamin'],
-                'tgl_lahir' => $_POST['tgl_lahir'],
-                'pekerjaan' => $_POST['pekerjaan'],
-                'id_wilayah' => $_POST['id_wilayah']
-            ];
-            
-            // Validasi NIK (harus unik)
-            $existing = $pendudukModel->getPendudukByNIK($data['nik']);
-            if ($existing) {
-                $_SESSION['error'] = "NIK sudah terdaftar!";
-                header("Location: ../index.php?page=form&action=add");
-                exit;
-            }
-            
-            if ($pendudukModel->insertPenduduk($data)) {
-                $_SESSION['success'] = "Data penduduk berhasil ditambahkan!";
-                header("Location: ../index.php?page=list");
-                exit;
-            } else {
-                $_SESSION['error'] = "Gagal menambahkan data penduduk!";
-                header("Location: ../index.php?page=form&action=add");
-                exit;
-            }
-        }
-        break;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $model = new PendudukModel();
     
-    case 'edit':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nik_lama = $_POST['nik_lama'];
-            $data = [
-                'nama' => $_POST['nama'],
-                'jenis_kelamin' => $_POST['jenis_kelamin'],
-                'tgl_lahir' => $_POST['tgl_lahir'],
-                'pekerjaan' => $_POST['pekerjaan'],
-                'id_wilayah' => $_POST['id_wilayah']
-            ];
-            
-            if ($pendudukModel->updatePenduduk($nik_lama, $data)) {
-                $_SESSION['success'] = "Data penduduk berhasil diperbarui!";
-                header("Location: ../index.php?page=list");
-                exit;
-            } else {
-                $_SESSION['error'] = "Gagal memperbarui data penduduk!";
-                header("Location: ../index.php?page=form&nik=" . $nik_lama);
-                exit;
-            }
+    if ($_POST['action'] === 'add') {
+        $data = [
+            'nik' => $_POST['nik'],
+            'nama' => $_POST['nama'],
+            'jenis_kelamin' => $_POST['jenis_kelamin'],
+            'tgl_lahir' => $_POST['tgl_lahir'],
+            'pekerjaan' => $_POST['pekerjaan'],
+            'id_wilayah' => $_POST['id_wilayah']
+        ];
+        
+        if ($model->insertPenduduk($data)) {
+            header("Location: ../index.php?page=list&success=1");
+        } else {
+            header("Location: ../index.php?page=form&error=1");
         }
-        break;
-    
-    case 'delete':
-        if (isset($_GET['nik'])) {
-            if ($pendudukModel->deletePenduduk($_GET['nik'])) {
-                $_SESSION['success'] = "Data penduduk berhasil dihapus!";
-            } else {
-                $_SESSION['error'] = "Gagal menghapus data penduduk!";
-            }
+    }
+    elseif ($_POST['action'] === 'edit') {
+        $nik = $_POST['nik_old'];
+        $data = [
+            'nama' => $_POST['nama'],
+            'jenis_kelamin' => $_POST['jenis_kelamin'],
+            'tgl_lahir' => $_POST['tgl_lahir'],
+            'pekerjaan' => $_POST['pekerjaan'],
+            'id_wilayah' => $_POST['id_wilayah']
+        ];
+        
+        if ($model->updatePenduduk($nik, $data)) {
+            header("Location: ../index.php?page=list&success=2");
+        } else {
+            header("Location: ../index.php?page=form&error=2");
         }
-        header("Location: ../index.php?page=list");
-        exit;
-        break;
+    }
+}
+elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'delete') {
+    $model = new PendudukModel();
+    $nik = $_GET['nik'];
     
-    default:
-        header("Location: ../index.php?page=list");
-        exit;
+    if ($model->deletePenduduk($nik)) {
+        header("Location: ../index.php?page=list&success=3");
+    } else {
+        header("Location: ../index.php?page=list&error=3");
+    }
 }
 ?>

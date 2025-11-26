@@ -1,18 +1,21 @@
 <?php
-// Konfigurasi Database
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'demografiku');
+class Database {
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $database = "demografi_ku";
+    public $conn;
 
-// Koneksi Database dengan mysqli
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    public function __construct() {
+        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
+        
+        if ($this->conn->connect_error) {
+            die("Koneksi database gagal: " . $this->conn->connect_error);
+        }
+    }
 
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
+    public function __destruct() {
+        $this->conn->close();
+    }
 }
-
-// Set charset UTF-8
-$conn->set_charset("utf8mb4");
 ?>

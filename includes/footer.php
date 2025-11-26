@@ -1,14 +1,6 @@
-</div><!-- End main-container -->
-    
-    <footer>
-        <p>&copy; 2024 DemografiKu - Dashboard Kepadatan Penduduk. All Rights Reserved.</p>
-        <p>Powered by PHP, MySQL & Bootstrap 5</p>
-    </footer>
+    </div>
 
     <!-- Bootstrap 5 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
