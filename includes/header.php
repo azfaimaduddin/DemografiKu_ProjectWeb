@@ -15,22 +15,40 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .card {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .kpi-card {
-            text-align: center;
-            padding: 20px;
-        }
-        .kpi-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #0d6efd;
-        }
+        /* Navbar Gradient Premium */
+.navbar {
+    background: linear-gradient(90deg, #0d6efd, #47a3ff, #63c5ff) !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #ffffff !important;
+}
+
+.navbar .nav-link {
+    color: #e8f4ff !important;
+    font-weight: 500;
+    transition: 0.25s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+.navbar .nav-link i {
+    opacity: 0.9;
+    transition: 0.25s;
+}
+
+.navbar .nav-link:hover i {
+    opacity: 1;
+}
+
     </style>
 </head>
 <body>
@@ -38,7 +56,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="index.php">
-                <i class="fas fa-chart-bar me-2"></i>
+                
                 DemografiKu
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -47,9 +65,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">
-                            <i class="fas fa-home me-1"></i>
-                            Dashboard
+                        <a class="nav-link dashboard-link" href="index.php" onclick="handleDashboardClick(event)">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            Statistik
                         </a>
                     </li>
                     <li class="nav-item">
@@ -70,3 +88,38 @@
     </nav>
 
     <div class="container mt-4">
+
+<script>
+// Fungsi untuk handle klik menu Dashboard
+function handleDashboardClick(event) {
+    // Cek apakah kita sudah berada di halaman dashboard
+    const currentPage = window.location.href;
+    
+    if (currentPage.includes('index.php') && !currentPage.includes('?page=')) {
+        // Jika sudah di halaman dashboard, scroll ke section data
+        event.preventDefault();
+        scrollToDataSection();
+    }
+    // Jika tidak di halaman dashboard, biarkan link bekerja normal (redirect ke index.php)
+}
+
+// Fungsi untuk scroll ke section data
+function scrollToDataSection() {
+    const dataSection = document.getElementById('data-section');
+    if (dataSection) {
+        dataSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Cek saat halaman dimuat, jika ada hash #data-section, scroll ke sana
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash === '#data-section') {
+        setTimeout(() => {
+            scrollToDataSection();
+        }, 100);
+    }
+});
+</script>
