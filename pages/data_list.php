@@ -139,7 +139,7 @@ $perempuan = count(array_filter($penduduk, function($p) { return $p['jenis_kelam
 <?php endif; ?>
 
 <!-- Data Table -->
-<div class="row">
+<div class="row" style="margin-bottom: 60px;">
     <div class="col-12">
         <div class="data-table-container">
             <div class="table-header">

@@ -103,7 +103,7 @@ $stats = $model->getDashboardStats();
     <div class="row mb-5">
         <div class="col-12">
             <div class="section-header text-center mb-5">
-                <h2 class="display-5 fw-bold gradient-text">📈 Dashboard Analytics</h2>
+                <h2 class="display-5 fw-bold gradient-text">Dashboard Analytics</h2>
                 <p class="lead text-muted">Data terkini yang diolah menjadi informasi berharga</p>
                 <div class="header-divider"></div>
             </div>
@@ -235,7 +235,7 @@ $stats = $model->getDashboardStats();
         </div>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4" style="padding-bottom: 60px">
         <div class="col-md-4">
             <div class="feature-card">
                 <div class="feature-icon bg-primary">

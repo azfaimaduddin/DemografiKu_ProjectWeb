@@ -63,7 +63,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link dashboard-link" href="index.php" onclick="handleDashboardClick(event)">
                             <i class="fas fa-chart-bar me-2"></i>

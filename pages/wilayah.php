@@ -182,15 +182,8 @@ foreach ($wilayah as $w) {
                 <div class="col-md-6 text-end">
                     <div class="d-flex gap-2 justify-content-end">
                         <div class="search-box-wilayah">
-                            <i class="fas fa-search search-icon"></i>
                             <input type="text" id="searchWilayah" class="form-control search-input" placeholder="Cari nama wilayah...">
                         </div>
-                        <button class="btn btn-success" onclick="exportWilayahData()">
-                            <i class="fas fa-file-export me-2"></i>Export
-                        </button>
-                        <button class="btn btn-primary" onclick="showWilayahMap()">
-                            <i class="fas fa-map me-2"></i>View Map
-                        </button>
                     </div>
                 </div>
             </div>
@@ -207,17 +200,14 @@ foreach ($wilayah as $w) {
                 <label class="btn btn-outline-primary" for="cardView">
                     <i class="fas fa-th-large me-2"></i>Card View
                 </label>
-                <input type="radio" class="btn-check" name="viewMode" id="tableView" autocomplete="off">
-                <label class="btn btn-outline-primary" for="tableView">
-                    <i class="fas fa-table me-2"></i>Table View
-                </label>
+                
             </div>
         </div>
     </div>
 </div>
 
 <!-- Cards View -->
-<div id="cardsView" class="view-content">
+<div id="cardsView" class="view-content" style="padding-bottom: 60px;">
     <div class="row g-4">
         <?php foreach ($wilayahWithDensity as $w): 
             $tingkatColor = [
@@ -303,84 +293,6 @@ foreach ($wilayah as $w) {
             </div>
         </div>
         <?php endforeach; ?>
-    </div>
-</div>
-
-<!-- Table View -->
-<div id="tableView" class="view-content" style="display: none;">
-    <div class="table-container-wilayah">
-        <div class="table-responsive">
-            <table class="table table-hover" id="wilayahTable">
-                <thead class="table-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nama Wilayah</th>
-                        <th>Tingkat</th>
-                        <th>Luas Area (km²)</th>
-                        <th>Jumlah Penduduk</th>
-                        <th>Kepadatan</th>
-                        <th>Status Kepadatan</th>
-                        <th class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($wilayahWithDensity as $w): 
-                        $kepadatanLevel = $w['kepadatan'] > 100 ? 'high' : ($w['kepadatan'] > 50 ? 'medium' : 'low');
-                    ?>
-                    <tr class="wilayah-row" data-tingkat="<?php echo $w['tingkat']; ?>">
-                        <td>
-                            <span class="badge bg-secondary"><?php echo $w['id_wilayah']; ?></span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="wilayah-avatar me-3">
-                                    <i class="fas <?php echo $w['tingkat'] === 'Desa' ? 'fa-city' : ($w['tingkat'] === 'RW' ? 'fa-road' : 'fa-home'); ?>"></i>
-                                </div>
-                                <div>
-                                    <div class="fw-semibold"><?php echo $w['nama_wilayah']; ?></div>
-                                    <small class="text-muted">ID: <?php echo $w['id_wilayah']; ?></small>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="badge tingkat-badge tingkat-<?php echo $w['tingkat']; ?>">
-                                <?php echo $w['tingkat']; ?>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="luas-value"><?php echo $w['luas_area_km2']; ?></span>
-                        </td>
-                        <td>
-                            <span class="penduduk-count"><?php echo $w['jumlah_penduduk']; ?></span>
-                        </td>
-                        <td>
-                            <span class="kepadatan-value <?php echo $kepadatanLevel === 'high' ? 'text-danger' : ($kepadatanLevel === 'medium' ? 'text-warning' : 'text-success'); ?>">
-                                <?php echo $w['kepadatan']; ?>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="badge kepadatan-badge kepadatan-<?php echo $kepadatanLevel; ?>">
-                                <?php echo $kepadatanLevel === 'high' ? 'Tinggi' : ($kepadatanLevel === 'medium' ? 'Sedang' : 'Rendah'); ?>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="action-buttons-table">
-                                <button class="btn btn-sm btn-outline-primary" onclick="showWilayahDetail(<?php echo $w['id_wilayah']; ?>)">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-warning" onclick="editWilayah(<?php echo $w['id_wilayah']; ?>)">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-info" onclick="viewPenduduk(<?php echo $w['id_wilayah']; ?>)">
-                                    <i class="fas fa-users"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 
