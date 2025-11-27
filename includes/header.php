@@ -23,6 +23,31 @@ require_once 'config/auth.php';
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+        .navbar-glossy {
+            background: linear-gradient(90deg, #0066ff, #4d9fff, #8ac6ff);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-glossy .nav-link {
+            color: #e7f0ff !important;
+            font-weight: 500;
+            transition: 0.2s ease-in-out;
+        }
+
+        .navbar-glossy .nav-link:hover {
+            color: #ffffff !important;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 700;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+        }
+
         .navbar-brand {
             font-weight: bold;
         }
@@ -70,7 +95,8 @@ require_once 'config/auth.php';
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-glossy">
+
         <div class="container">
             <a class="navbar-brand" href="index.php">
                 DemografiKu
