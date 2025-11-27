@@ -1,11 +1,9 @@
 <?php
-// Simple Router
+require_once 'config/auth.php';
+Auth::requireLogin();
+
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
-
-// Include header
 include 'includes/header.php';
-
-// Route pages
 switch ($page) {
     case 'list':
         include 'pages/data_list.php';
@@ -21,7 +19,5 @@ switch ($page) {
         include 'pages/dashboard.php';
         break;
 }
-
-// Include footer
 include 'includes/footer.php';
 ?>

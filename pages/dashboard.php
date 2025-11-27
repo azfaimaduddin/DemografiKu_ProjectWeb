@@ -1,11 +1,13 @@
 <?php
 require_once __DIR__ . '/../models/PendudukModel.php';
+require_once __DIR__ . '/../config/auth.php';
+Auth::requireLogin();
 
 $model = new PendudukModel();
 $stats = $model->getDashboardStats();
 ?>
 
-<!-- Hero Section yang Lebih Menarik -->
+<!-- Box Section -->
 <div class="row mb-5">
     <div class="col-12">
         <div class="hero-section text-white rounded-4 position-relative overflow-hidden">
@@ -24,7 +26,6 @@ $stats = $model->getDashboardStats();
                             analisis distribusi demografi, dan optimalkan perencanaan wilayah dengan dashboard interaktif
                             yang memberikan insight mendalam untuk pengambilan keputusan yang lebih baik.
                         </p>
-
                         <div class="d-flex flex-wrap gap-3 mb-4">
                             <div class="d-flex align-items-center">
                                 <div class="icon-circle bg-warning me-3">
@@ -54,7 +55,6 @@ $stats = $model->getDashboardStats();
                                 </div>
                             </div>
                         </div>
-
                         <button onclick="scrollToDataSection()" class="btn btn-warning btn-lg px-4 py-3 fw-bold">
                             <i class="fas fa-rocket me-2"></i>
                             Jelajahi Data Statistik
@@ -87,7 +87,7 @@ $stats = $model->getDashboardStats();
     </div>
 </div>
 
-<!-- Scroll Indicator dengan Animasi -->
+<!-- Animasi Scroll -->
 <div class="text-center mb-5">
     <div class="scroll-indicator">
         <div class="mouse">
@@ -99,7 +99,7 @@ $stats = $model->getDashboardStats();
 
 <!-- Section Statistik dan Grafik -->
 <div id="data-section">
-    <!-- Statistik Cards dengan Design Modern -->
+    <!-- Statistik Cards -->
     <div class="row mb-5">
         <div class="col-12">
             <div class="section-header text-center mb-5">
@@ -110,7 +110,7 @@ $stats = $model->getDashboardStats();
         </div>
     </div>
 
-    <!-- KPI Cards dengan Animasi -->
+    <!-- Animasi Loading -->
     <div class="row g-4 mb-5">
         <div class="col-md-4">
             <div class="stat-card card-1">
@@ -161,7 +161,7 @@ $stats = $model->getDashboardStats();
 
     <!-- Grafik Interaktif -->
     <div class="row g-4">
-        <!-- Pie Chart dengan Donut -->
+        <!-- Pie Chart -->
         <div class="col-lg-6">
             <div class="chart-container">
                 <div class="chart-header">
@@ -185,7 +185,7 @@ $stats = $model->getDashboardStats();
             </div>
         </div>
 
-        <!-- Bar Chart Modern -->
+        <!-- Bar Chart -->
         <div class="col-lg-6">
             <div class="chart-container">
                 <div class="chart-header">
@@ -234,7 +234,6 @@ $stats = $model->getDashboardStats();
             </div>
         </div>
     </div>
-
     <div class="row g-4" style="padding-bottom: 60px">
         <div class="col-md-4">
             <div class="feature-card">
