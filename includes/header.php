@@ -23,12 +23,18 @@ require_once 'config/auth.php';
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+        /* Fix untuk navbar dan dropdown */
         .navbar-glossy {
             background: linear-gradient(90deg, #0066ff, #4d9fff, #8ac6ff);
             border-bottom: 1px solid rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030 !important;
         }
 
         .navbar-glossy .nav-link {
@@ -52,6 +58,45 @@ require_once 'config/auth.php';
             font-weight: bold;
         }
 
+        /* FIX CRITICAL: Dropdown z-index */
+        .navbar .dropdown-menu {
+            z-index: 1060 !important;
+            position: absolute !important;
+        }
+
+        .dropdown-user {
+            min-width: 200px;
+            z-index: 1060 !important;
+            position: absolute !important;
+        }
+
+        /* Pastikan dropdown tidak tertutup */
+        .navbar-nav .nav-item.dropdown {
+            position: static !important;
+        }
+
+        .dropdown-menu.show {
+            display: block !important;
+            z-index: 1060 !important;
+            position: absolute !important;
+            right: 0 !important;
+            left: auto !important;
+        }
+
+        /* User dropdown styles */
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
         .card {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
@@ -73,22 +118,30 @@ require_once 'config/auth.php';
             scroll-behavior: smooth;
         }
 
-        /* User dropdown styles */
-        .user-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
+        /* Body padding untuk fixed navbar */
+        body {
+            padding-top: 76px;
         }
 
-        .dropdown-user {
-            min-width: 200px;
+        /* Fix untuk mobile dropdown */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: linear-gradient(90deg, #0066ff, #4d9fff);
+                padding: 15px;
+                border-radius: 0 0 10px 10px;
+                margin-top: 8px;
+                z-index: 1031 !important;
+            }
+            
+            .dropdown-menu {
+                background-color: rgba(255, 255, 255, 0.95) !important;
+            }
+        }
+
+        /* Pastikan content di bawah navbar */
+        .main-content {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -96,7 +149,6 @@ require_once 'config/auth.php';
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-glossy">
-
         <div class="container">
             <a class="navbar-brand" href="index.php">
                 DemografiKu
@@ -127,11 +179,11 @@ require_once 'config/auth.php';
                         </li>
                     </ul>
 
-                    <!-- User Dropdown -->
+                    <!-- User Dropdown - FIXED VERSION -->
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" style="position: relative;">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="userDropdown">
                                 <div class="user-avatar me-2">
                                     <?php
                                     $user = Auth::getUser();
@@ -142,7 +194,7 @@ require_once 'config/auth.php';
                                 </div>
                                 <span><?php echo $user ? htmlspecialchars($user['nama_lengkap']) : 'User'; ?></span>
                             </a>
-                            <ul class="dropdown-menu dropdown-user">
+                            <ul class="dropdown-menu dropdown-user dropdown-menu-end" style="z-index: 1060 !important;">
                                 <li>
                                     <div class="dropdown-header">
                                         <div class="d-flex align-items-center">
@@ -176,7 +228,7 @@ require_once 'config/auth.php';
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4 main-content">
 
         <script>
             // Fungsi untuk handle klik menu Dashboard
@@ -205,6 +257,14 @@ require_once 'config/auth.php';
                     setTimeout(() => {
                         scrollToDataSection();
                     }, 100);
+                }
+
+                // Backup fix untuk dropdown
+                const userDropdown = document.getElementById('userDropdown');
+                if (userDropdown) {
+                    userDropdown.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
                 }
             });
         </script>

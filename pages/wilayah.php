@@ -158,7 +158,7 @@ foreach ($wilayah as $w) {
     </div>
 </div>
 
-<!-- Filter -->
+<!-- Filter
 <div class="row mb-4">
     <div class="col-12">
         <div class="action-container-wilayah">
@@ -196,8 +196,8 @@ foreach ($wilayah as $w) {
     </div>
 </div>
 
-<!-- Cards View -->
-<div id="cardsView" class="view-content" style="padding-bottom: 60px;">
+<-- Cards View -->
+<!-- <div id="cardsView" class="view-content" style="padding-bottom: 60px;">
     <div class="row g-4">
         <?php foreach ($wilayahWithDensity as $w):
             $tingkatColor = [
@@ -264,7 +264,7 @@ foreach ($wilayah as $w) {
             </div>
         <?php endforeach; ?>
     </div>
-</div>
+</div> -->
 
 <!-- Empty State -->
 <?php if (empty($wilayah)): ?>
@@ -385,9 +385,9 @@ foreach ($wilayah as $w) {
         backdrop-filter: blur(10px);
     }
 
-    .floating-map {
+    /* .floating-map {
         animation: float 6s ease-in-out infinite;
-    }
+    } */
 
     @keyframes float {
 

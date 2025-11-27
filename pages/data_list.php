@@ -386,9 +386,9 @@ $perempuan = count(array_filter($penduduk, function ($p) {
         opacity: 0.9;
     }
 
-    .floating-action {
+    /* .floating-action {
         animation: float 6s ease-in-out infinite;
-    }
+    } */
 
     @keyframes float {
 

@@ -505,9 +505,9 @@ $stats = $model->getDashboardStats();
         justify-content: center;
     }
 
-    .floating-animation {
+    /* .floating-animation {
         animation: float 6s ease-in-out infinite;
-    }
+    } */
 
     @keyframes float {
 
