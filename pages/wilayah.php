@@ -101,11 +101,7 @@ foreach ($wilayah as $w) {
                     </div>
                     <div class="stats-content">
                         <h3><?php echo number_format($totalPenduduk); ?></h3>
-                        <p>Total Penduduk</p>
-                        <div class="stats-trend up">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>+12%</span>
-                        </div>
+                        <p>Total Penduduk</p> 
                     </div>
                 </div>
             </div>
@@ -117,10 +113,6 @@ foreach ($wilayah as $w) {
                     <div class="stats-content">
                         <h3><?php echo $totalWilayah; ?></h3>
                         <p>Wilayah Terdaftar</p>
-                        <div class="stats-trend up">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>+5%</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -132,10 +124,6 @@ foreach ($wilayah as $w) {
                     <div class="stats-content">
                         <h3><?php echo $stats['kepadatan_rata_rata']; ?></h3>
                         <p>Kepadatan Rata-rata</p>
-                        <div class="stats-trend neutral">
-                            <i class="fas fa-minus"></i>
-                            <span>±0%</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -147,10 +135,6 @@ foreach ($wilayah as $w) {
                     <div class="stats-content">
                         <h3><?php echo array_sum(array_column($wilayah, 'luas_area_km2')); ?> km²</h3>
                         <p>Total Luas Area</p>
-                        <div class="stats-trend down">
-                            <i class="fas fa-arrow-down"></i>
-                            <span>-2%</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -158,46 +142,7 @@ foreach ($wilayah as $w) {
     </div>
 </div>
 
-<!-- Filter
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="action-container-wilayah">
-            <div class="row g-3 align-items-center">
-                <div class="col-md-6">
-                    <div class="d-flex flex-wrap gap-3 align-items-center">
-                        <h5 class="mb-0 text-primary">
-                            <i class="fas fa-filter me-2"></i>Filter Data
-                        </h5>
-                        <div class="filter-buttons">
-                            <button class="btn btn-outline-primary btn-filter active" data-filter="all">
-                                Semua Wilayah
-                            </button>
-                            <button class="btn btn-outline-primary btn-filter" data-filter="Desa">
-                                <i class="fas fa-city me-1"></i>Desa
-                            </button>
-                            <button class="btn btn-outline-primary btn-filter" data-filter="RW">
-                                <i class="fas fa-road me-1"></i>RW
-                            </button>
-                            <button class="btn btn-outline-primary btn-filter" data-filter="RT">
-                                <i class="fas fa-home me-1"></i>RT
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 text-end">
-                    <div class="d-flex gap-2 justify-content-end">
-                        <div class="search-box-wilayah">
-                            <input type="text" id="searchWilayah" class="form-control search-input" placeholder="Cari nama wilayah...">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<-- Cards View -->
-<!-- <div id="cardsView" class="view-content" style="padding-bottom: 60px;">
+<div id="cardsView" class="view-content" style="padding-bottom: 60px;">
     <div class="row g-4">
         <?php foreach ($wilayahWithDensity as $w):
             $tingkatColor = [
@@ -264,7 +209,7 @@ foreach ($wilayah as $w) {
             </div>
         <?php endforeach; ?>
     </div>
-</div> -->
+</div>
 
 <!-- Empty State -->
 <?php if (empty($wilayah)): ?>

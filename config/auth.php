@@ -1,5 +1,4 @@
 <?php
-// Pastikan session hanya dimulai sekali
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
